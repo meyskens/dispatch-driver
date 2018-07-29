@@ -1,6 +1,7 @@
 import mongoose from "../db"
 import bcrypt from "bcrypt"
 
+const ObjectId = mongoose.Types.ObjectId
 const UsersSchema = new mongoose.Schema({
     name: String,
     repoUser: String,
@@ -17,7 +18,7 @@ const saltRounds = 10;
 
 export const get = (id) => {
     return UsersModel.findOne({
-        _id: mongoose.Schema.Types.ObjectId(id),
+        _id: ObjectId(id),
     }).exec()
 }
 

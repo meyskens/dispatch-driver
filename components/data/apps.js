@@ -1,5 +1,6 @@
 import mongoose from "../db"
 
+const ObjectId = mongoose.Types.ObjectId
 const AppsSchema = new mongoose.Schema({
     name: String,
     internalName: String,
@@ -18,7 +19,7 @@ const AppsModel = mongoose.model("apps", AppsSchema, "apps")
 
 export const get = (id) => {
     return AppsModel.findOne({
-        _id: mongoose.Schema.Types.ObjectId(id),
+        _id: ObjectId(id),
     }).exec()
 }
 
