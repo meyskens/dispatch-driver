@@ -72,6 +72,8 @@ export default function ({ app, expressJWT, wrap, jwt }) {
     }))
     
     app.get("/dash/me", wrap(async (req,res) => {
-        res.json(await users.get(req.user._id))
+        const user = await users.get(req.user._id)
+        user.passwordHash = ""
+        res.json(user)
     }))
 }
