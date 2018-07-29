@@ -14,7 +14,7 @@ const UsersModel = mongoose.model("users", UsersSchema, "users")
 
 const saltRounds = 10;
 
-export const getUser = (id) => {
+export const get = (id) => {
     return UsersModel.findOne({
         _id: mongoose.Schema.Types.ObjectId(id),
     }).exec()

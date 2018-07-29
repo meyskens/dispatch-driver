@@ -15,6 +15,12 @@ AppsSchema.index({
 
 const AppsModel = mongoose.model("apps", AppsSchema, "apps")
 
+export const get = (id) => {
+    return AppsModel.findOne({
+        _id: mongoose.Schema.Types.ObjectId(id),
+    }).exec()
+}
+
 export const getAppForRepo = (repo) => {
     return AppsModel.findOne({
         repo,
