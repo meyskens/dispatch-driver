@@ -1,5 +1,5 @@
 export default function ({ app }) {
-    app.use(function (err, req, res) {
+    app.use(function (err, req, res, next) {
         if (err.name === "UnauthorizedError" && err.message === "jwt expired") {
             req.log.debug(err, "Caught an UnauthorizedError (jwt expired), sending 419");
             return res.status(419).json({
