@@ -1,7 +1,6 @@
 export default function ({ app }) {
     app.use(function (err, req, res, next) {
         if (err.name === "UnauthorizedError" && err.message === "jwt expired") {
-            req.log.debug(err, "Caught an UnauthorizedError (jwt expired), sending 419");
             return res.status(419).json({
                 result: "error",
                 error: "Your session has expired.",
@@ -9,7 +8,6 @@ export default function ({ app }) {
         }
 
         if (err.name === "UnauthorizedError") {
-            req.log.info(err, "Caught an UnauthorizedError, sending 401");
             return res.status(401).json({
                 result: "error",
                 error: "You are not authenticated.",
@@ -17,7 +15,6 @@ export default function ({ app }) {
         }
 
         if (err.name === "NotFoundError") {
-            req.log.debug(err, "Caught an NotFoundError, sending 404");
             return res.status(404).json({
                 result: "error",
                 error: err.message || "Not found",
@@ -25,7 +22,6 @@ export default function ({ app }) {
         }
 
         if (err.name === "BadRequestError") {
-            req.log.info(err, "Caught an BadRequestError, sending 400");
             return res.status(400).json({
                 result: "error",
                 error: err.message || "Missing information",
@@ -33,7 +29,6 @@ export default function ({ app }) {
         }
 
         if (err.name === "AccessDeniedError") {
-            req.log.warn(err, "Caught an AccessDeniedError, sending 403");
             return res.status(403).json({
                 result: "error",
                 error: err.message || "Access denied",
