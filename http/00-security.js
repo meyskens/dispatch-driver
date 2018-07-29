@@ -8,7 +8,7 @@ import UnauthorizedError from "~/http/classes/unauthorized"
 const publicKey = fs.readFileSync("./keys/publicKey.pem");
 const cert = fs.readFileSync("./keys/signingKey.pem");
 
-export default function ({ app, expressJWT, wrap }) {
+export default function ({ app, expressJWT, wrap, jwt }) {
     app.use("/dash", expressJWT({
         secret: publicKey,
         audience: "https://driver.dispatch.sh/dash",
@@ -44,8 +44,12 @@ export default function ({ app, expressJWT, wrap }) {
             throw new UnauthorizedError("Wrong login")
         }
 
-        const token = jwt.sign(user, cert, {
-            expiresInMinutes: 60,
+        const token = jwt.sign({
+            email: user.email,
+            name: user.name,
+            _id: user._id.toString()
+        }, cert, {
+            expiresIn: "60m",
             audience: "https://driver.dispatch.sh/dash",
             algorithm: "RS256",
         });
@@ -55,8 +59,12 @@ export default function ({ app, expressJWT, wrap }) {
 
     app.post("/dash/keep-alive", wrap(async (req, res) => {
         const user = await users.get(req.user._id);
-        const token = jwt.sign(user, cert, {
-            expiresInMinutes: 60,
+        const token = jwt.sign({
+            email: user.email,
+            name: user.name,
+            _id: user._id.toString()
+        }, cert, {
+            expiresIn: "60m",
             audience: "https://driver.dispatch.sh/dash",
             algorithm: "RS256",
         });
