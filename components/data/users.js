@@ -3,6 +3,7 @@ import bcrypt from "bcrypt"
 
 const UsersSchema = new mongoose.Schema({
     name: String,
+    repoUser: String,
     email: String,
     passwordHash: String,
 }, { collection: "users" })
