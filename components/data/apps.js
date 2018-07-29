@@ -2,6 +2,7 @@ import mongoose from "../db"
 
 const AppsSchema = new mongoose.Schema({
     name: String,
+    internalName: String,
     repo: String,
     values: Object,
     user: {
@@ -24,5 +25,11 @@ export const get = (id) => {
 export const getAppForRepo = (repo) => {
     return AppsModel.findOne({
         repo,
+    }).exec()
+}
+
+export const getAppsForUser = (user) => {
+    return AppsModel.find({
+        user,
     }).exec()
 }
