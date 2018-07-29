@@ -1,10 +1,14 @@
 import fs from "fs"
 import express from "express"
 import bodyParser from "body-parser"
+import cors from "cors"
 import expressJWT from "express-jwt"
 import jwt from "jsonwebtoken"
 
 const app = express()
+if (!process.env.DISABLE_CORS) {
+    app.use(cors())
+}
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(bodyParser.raw())
@@ -31,4 +35,4 @@ for (let module of modules) {
     }
 }
 
-app.listen(80, () => console.log("Listening on port 80"))
+app.listen(8080, () => console.log("Listening on port 80"))

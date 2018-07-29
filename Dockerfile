@@ -11,5 +11,6 @@ RUN npm install
 
 ENV MONGODB_HOST=""
 ENV MONGODB_DB=""
+ENV DISABLE_CORS="true"
 
 CMD node app.js
