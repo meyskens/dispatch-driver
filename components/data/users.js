@@ -1,5 +1,5 @@
 import mongoose from "../db"
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs"
 
 const ObjectId = mongoose.Types.ObjectId
 const UsersSchema = new mongoose.Schema({
