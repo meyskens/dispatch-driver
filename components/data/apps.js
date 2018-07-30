@@ -13,6 +13,7 @@ const AppsSchema = new mongoose.Schema({
 }, { collection: "apps" })
 AppsSchema.index({
     repo: 1,
+    user: 1,
 })
 
 const AppsModel = mongoose.model("apps", AppsSchema, "apps")
