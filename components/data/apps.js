@@ -29,8 +29,19 @@ export const getAppForRepo = (repo) => {
     }).exec()
 }
 
+export const getAppForInternalName = (internalName) => {
+    return AppsModel.findOne({
+        internalName,
+    }).exec()
+}
+
 export const getAppsForUser = (user) => {
     return AppsModel.find({
         user,
     }).exec()
+}
+
+export const add = (user, entry) => {
+    entry.user = ObjectId(user)
+    return (new AppsModel(entry)).save()
 }
