@@ -19,7 +19,7 @@ export default function({ app, wrap }) {
             throw new BadRequestError("No repo given")
         }
 
-        req.body.internalName = req.body.name.replace(/[^a-zA-Z0-9]/g, "").toLower()
+        req.body.internalName = req.body.name.replace(/[^a-zA-Z0-9]/g, "").toLowerCase()
         req.body.repo = user.repoUser + "/" + req.body.repo
 
         if (await apps.getAppForRepo(req.body.repo)) {
