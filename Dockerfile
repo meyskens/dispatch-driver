@@ -9,8 +9,8 @@ WORKDIR /opt/hooks/
 
 RUN npm install
 
-ENV MONGODB_HOST=""
-ENV MONGODB_DB=""
+ENV MONGODB_HOST="mongodb:27011"
+ENV MONGODB_DB="dispatch"
 ENV DISABLE_CORS="true"
 ENV PORT="80"
 
