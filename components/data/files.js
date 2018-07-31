@@ -15,3 +15,9 @@ FilesSchema.index({
 })
 
 const FilesModel = mongoose.model("files", FilesSchema, "files")
+
+export const getFilesForApp = (app) => {
+    return FilesModel.find({
+        app: ObjectId(app),
+    })
+}
