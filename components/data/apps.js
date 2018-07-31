@@ -8,6 +8,7 @@ const AppsSchema = new mongoose.Schema({
     domain: String,
     altDomains: [ String ],
     image: String,
+    replicas: Number,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
