@@ -5,7 +5,9 @@ const AppsSchema = new mongoose.Schema({
     name: String,
     internalName: String,
     repo: String,
-    values: Object,
+    domain: String,
+    altDomains: [ String ],
+    image: String,
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
