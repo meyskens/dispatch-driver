@@ -31,4 +31,8 @@ export default function({ app, wrap }) {
 
         res.json(await apps.add(user._id, req.body))
     }))
+
+    app.get("/dash/app/:id", wrap(async (req, res) => {
+        return res.json(await apps.getAppWithUserAndId(req.user._id, req.params.id))
+    }))
 }

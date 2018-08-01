@@ -27,6 +27,13 @@ export const get = (id) => {
     }).exec()
 }
 
+export const getAppWithUserAndId = (user, id) => {
+    return AppsModel.findOne({
+        user: ObjectId(user),
+        _id: ObjectId(id),
+    }).exec()
+}
+
 export const getAppForRepo = (repo) => {
     return AppsModel.findOne({
         repo,
