@@ -50,7 +50,7 @@ export default function({ app, wrap }) {
 
         req.body.user = currentEntry.user // not allowing patches on this
 
-        apps.update(currentEntry._id, req.body)
+        await apps.update(currentEntry._id, req.body)
 
         res.json({status: "ok"})
     }))
