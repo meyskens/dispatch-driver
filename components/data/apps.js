@@ -56,3 +56,7 @@ export const add = (user, entry) => {
     entry.user = ObjectId(user)
     return (new AppsModel(entry)).save()
 }
+
+export const update = (id, entry) => {
+    return AppsModel.update({ _id: ObjectId(id), }, entry).exec()
+}

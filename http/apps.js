@@ -1,5 +1,6 @@
 import * as apps from "~/components/data/apps"
 import * as users from "~/components/data/users"
+import { NotFoundError } from "~/http/classes/notfound"
 
 export default function({ app, wrap }) {
     app.get("/dash/apps", wrap(async (req, res) => {
@@ -34,5 +35,23 @@ export default function({ app, wrap }) {
 
     app.get("/dash/app/:id", wrap(async (req, res) => {
         return res.json(await apps.getAppWithUserAndId(req.user._id, req.params.id))
+    }))
+
+    app.patch("/dash/app/:id", wrap(async (req, res) => {
+        const currentEntry = await apps.getAppWithUserAndId(req.user._id, req.params.id)
+
+        if (!currentEntry) {
+            throw new NotFoundError("app not found")
+        }
+
+        if (req.body.repo && req.body.repo != currentEntry.repo && apps.getAppForRepo(req.body.repo )) {
+            throw new BadRequestError("Repo already used")
+        }
+
+        req.body.user = currentEntry.user // not allowing patches on this
+
+        apps.update(currentEntry._id, req.body)
+
+        res.json({status: "ok"})
     }))
 }
