@@ -5,6 +5,7 @@ const EnvVarSchema = new mongoose.Schema({
     name: String,
     key: String,
     value: String,
+    hide: Boolean,
     app: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "apps",
