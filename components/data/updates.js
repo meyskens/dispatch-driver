@@ -1,4 +1,4 @@
-import mongoose from "./db"
+import mongoose from "../db"
 
 const ObjectId = mongoose.Types.ObjectId
 const Schema = mongoose.Schema
@@ -19,4 +19,8 @@ const UpdatesModel = mongoose.model("updates", UpdatesSchema, "updates")
 
 export const getForApp = (app) => {
     return UpdatesModel.find({ app: new ObjectId(app) }).exec()
+}
+
+export const getLastForApp = (app, limit = 10) => {
+    return UpdatesModel.find({ app: new ObjectId(app) }).sort("-time").limit(limit).exec()
 }
