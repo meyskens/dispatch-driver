@@ -60,3 +60,10 @@ export const add = (user, entry) => {
 export const update = (id, entry) => {
     return AppsModel.update({ _id: ObjectId(id), }, entry).exec()
 }
+
+export const removeForUserAndId = (user, id) => {
+    return AppsModel.remove({
+        user: ObjectId(user),
+        _id: ObjectId(id),
+    }).exec()
+}

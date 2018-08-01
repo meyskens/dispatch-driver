@@ -54,4 +54,9 @@ export default function({ app, wrap }) {
 
         res.json({status: "ok"})
     }))
+
+    app.delete("/dash/app/:id", wrap(async (req, res) => {
+        await apps.removeForUserAndId(req.user._id, req.params.id)
+        return res.json({status: "ok"})
+    }))
 }
