@@ -1,4 +1,3 @@
-import * as apps from "~/components/data/apps"
 import * as envvars from "~/components/data/envvars"
 import { NotFoundError } from "~/http/classes/notfound"
 
