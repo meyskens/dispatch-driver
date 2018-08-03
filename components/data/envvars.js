@@ -14,6 +14,7 @@ const EnvVarsSchema = new mongoose.Schema({
 EnvVarsSchema.index({
     app: 1,
     user: 1,
+    key:1,
 })
 
 const EnvVarsModel = mongoose.model("envvars", EnvVarsSchema, "envvars")
@@ -21,6 +22,13 @@ const EnvVarsModel = mongoose.model("envvars", EnvVarsSchema, "envvars")
 export const getForApp = (app) => {
     return EnvVarsModel.find({
         app: ObjectId(app),
+    })
+}
+
+export const getForAppAndKey = (app, key) => {
+    return EnvVarsModel.find({
+        app: ObjectId(app),
+        key,
     })
 }
 
@@ -33,6 +41,17 @@ export const getForAppAndID = (app, id) => {
 
 export const addForApp = (appID, entry) => {
     entry.app = ObjectId(appID)
+    return (new EnvVarsModel(entry)).save()
+}
+
+export const addOrOverwriteForApp = async (appID, entry) => {
+    entry.app = ObjectId(appID)
+
+    const entryForKey = await getForAppAndKey(appID, entry.key)
+    if (entryForKey) {
+        return EnvVarsModel.update({ _id: entryForKey._id }, entry).exec()
+    }
+
     return (new EnvVarsModel(entry)).save()
 }
 
