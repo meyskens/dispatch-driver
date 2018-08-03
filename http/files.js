@@ -1,4 +1,3 @@
-import * as apps from "~/components/data/apps"
 import * as files from "~/components/data/files"
 import { NotFoundError } from "~/http/classes/notfound"
 
