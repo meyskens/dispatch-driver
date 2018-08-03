@@ -4,6 +4,7 @@ import * as users from "~/components/data/users"
 import BadRequestError from "~/http/classes/badrequest"
 import AccessDeniedError from "~/http/classes/accessdenied"
 import UnauthorizedError from "~/http/classes/unauthorized" 
+import { NotFoundError } from "~/http/classes/notfound"
 
 const publicKey = fs.readFileSync("./keys/publicKey.pem")
 const cert = fs.readFileSync("./keys/signingKey.pem")
@@ -33,6 +34,14 @@ export default function ({ app, expressJWT, wrap, jwt }) {
         return next() // allow request to continue
     }))
 
+    app.use("/dash/app/:id/", wrap((req, res, next) => {
+        const app = await apps.getAppWithUserAndId(req.user._id, req.params.id)
+        if (!app) {
+            throw new NotFoundError("app not found")
+        }
+
+        return next()
+    }))
 
     app.post("/authenticate", wrap(async (req, res) => {
         if ( !req.body.email || !req.body.password) {
