@@ -20,17 +20,17 @@ export default function ({ app, expressJWT, wrap, jwt }) {
             return next()
         }
 
-        const appToCheck = req.query.app || req.body.app
-        const app = apps.get(appToCheck)
-        if (!app) {
-            throw new BadRequestError("The app mentioned in the request isn't valid.")
-        }
+        // const appToCheck = req.query.app || req.body.app
+        // const app = apps.get(appToCheck)
+        // if (!app) {
+        //     throw new BadRequestError("The app mentioned in the request isn't valid.")
+        // }
 
-        if (app.user != req.user._id) {
-            throw new AccessDeniedError("The app belongs to another user.")
-        }
+        // if (app.user != req.user._id) {
+        //     throw new AccessDeniedError("The app belongs to another user.")
+        // }
 
-        req.app = app
+        // req.app = app
         return next() // allow request to continue
     }))
 
