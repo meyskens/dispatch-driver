@@ -4,8 +4,8 @@ FROM ${ARCHREPO}/node:10-stretch
 ARG QEMU_ARCH
 COPY qemu-${QEMU_ARCH}-static /usr/bin/
 
-COPY ./ /opt/hooks/
-WORKDIR /opt/hooks/
+COPY ./ /opt/driver/
+WORKDIR /opt/driver/
 
 RUN npm install
 
