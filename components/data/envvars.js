@@ -26,7 +26,7 @@ export const getForApp = (app) => {
 }
 
 export const getForAppAndKey = (app, key) => {
-    return EnvVarsModel.find({
+    return EnvVarsModel.findOne({
         app: ObjectId(app),
         key,
     })
