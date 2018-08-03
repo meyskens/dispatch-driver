@@ -34,7 +34,7 @@ export default function ({ app, expressJWT, wrap, jwt }) {
         return next() // allow request to continue
     }))
 
-    app.use("/dash/app/:id/", wrap((req, res, next) => {
+    app.use("/dash/app/:id/", wrap(async (req, res, next) => {
         const app = await apps.getAppWithUserAndId(req.user._id, req.params.id)
         if (!app) {
             throw new NotFoundError("app not found")
