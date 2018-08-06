@@ -27,6 +27,12 @@ export const get = (id) => {
     }).exec()
 }
 
+export const getAppCountForUser = (user) => {
+    return AppsModel.countDocuments({
+        user: ObjectId(user),
+    }).exec()
+}
+
 export const getAppWithUserAndId = (user, id) => {
     return AppsModel.findOne({
         user: ObjectId(user),

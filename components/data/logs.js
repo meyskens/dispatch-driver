@@ -30,15 +30,23 @@ export const getForAppSince = (app, since) => {
 }
 
 export const countStatusForAppSince = (status, app, since) => {
-    return LogsModel.count({
+    return LogsModel.countDocuments({
         app: ObjectId(app),
         status,
         time: { $gte: new Date(since) }
     }).exec()
 }
 
+
+export const countForAppSince = (app, since) => {
+    return LogsModel.countDocuments({
+        app: ObjectId(app),
+        time: { $gte: new Date(since) }
+    }).exec()
+}
+
 export const countForAppBetween = (status, app, start, end) => {
-    return LogsModel.count({
+    return LogsModel.countDocuments({
         app: ObjectId(app),
         time: { $gte: new Date(start), $lt: new Date(end)  }
     }).exec()
