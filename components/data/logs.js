@@ -22,7 +22,24 @@ LogsSchema.index({
 
 const LogsModel = mongoose.model("logs", LogsSchema, "logs")
 
-export const add = (entry) => {
-    entry.app = ObjectId(entry.app)
-    return (new LogsModel(entry)).save()
+export const getForAppSince = (app, since) => {
+    return LogsModel.find({
+        app: ObjectId(app),
+        time: { $gte: new Date(since) }
+    }).exec()
+}
+
+export const countStatusForAppSince = (status, app, since) => {
+    return LogsModel.count({
+        app: ObjectId(app),
+        status,
+        time: { $gte: new Date(since) }
+    }).exec()
+}
+
+export const countForAppBetween = (status, app, start, end) => {
+    return LogsModel.count({
+        app: ObjectId(app),
+        time: { $gte: new Date(start), $lt: new Date(end)  }
+    }).exec()
 }
