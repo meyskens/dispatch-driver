@@ -38,7 +38,7 @@
     "express-jwt": "^5.3.1",
     "generate-password": "^1.4.0",
     "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.2.6",
+    "mongoose": "^5.2.7",
     "restler": "^3.4.0"
   }
 }
