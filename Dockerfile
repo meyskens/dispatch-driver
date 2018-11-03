@@ -11,7 +11,6 @@ RUN npm install
 
 ENV MONGODB_HOST="mongodb:27017"
 ENV MONGODB_DB="dispatch"
-ENV DISABLE_CORS="true"
 ENV PORT="80"
 
 CMD node app.js
