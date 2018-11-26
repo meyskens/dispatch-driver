@@ -1,6 +1,7 @@
 import * as apps from "~/components/data/apps"
 import * as users from "~/components/data/users"
 import { NotFoundError } from "~/http/classes/notfound"
+import { BadRequestError } from "~/http/classes/badrequest"
 
 export default function({ app, wrap }) {
     app.get("/dash/apps", wrap(async (req, res) => {
