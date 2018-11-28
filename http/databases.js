@@ -8,7 +8,7 @@ export default function ({ app, wrap }) {
 
     // MongoDB
 
-    app.get("/dash/app/:id/mongodb", wrap(async (req, res) => {
+    app.get('/dash/app/:id/mongodb', wrap(async (req, res) => {
         return res.json(await databases.getForAppAndName(req.params.id, "MongoDB") !== null)
     }))
 
