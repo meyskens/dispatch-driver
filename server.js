@@ -35,4 +35,4 @@ for (let module of modules) {
     }
 }
 
-app.listen((parseInt(process.env.PORT, 10) || 8080), () => console.log("Listening"))
+app.listen((parseInt(process.env.PORT, 10) || 8080), () =>  console.log("Listening"))
