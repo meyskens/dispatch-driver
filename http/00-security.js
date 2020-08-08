@@ -13,7 +13,7 @@ export default function ({ app, expressJWT, wrap, jwt }) {
     app.use("/dash", expressJWT({
         secret: publicKey,
         audience: "https://driver.dispatch.sh/dash",
-        algorithms: ['HS256'],
+        algorithms: ['RS256'],
     }))
 
     app.all("/dash/*", wrap(async (req, res, next) => {
