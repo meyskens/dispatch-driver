@@ -19,7 +19,7 @@
   "homepage": "https://github.com/meyskens/dispatch-driver/#readme",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-env": "^7.12.10",
     "babel-eslint": "^10.1.0",
     "babel-plugin-add-module-exports": "^1.0.4",
     "babel-plugin-root-import": "^6.6.0",
