@@ -36,7 +36,7 @@
     "eslint": "^7.17.0",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
-    "generate-password": "^1.5.1",
+    "generate-password": "^1.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.11",
     "restler": "^3.4.0"
